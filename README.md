@@ -1,4 +1,6 @@
 # Remastered-MacOS-for-the-Web
+![macOS Web Icon](icon/macOSWeb.png)
+
 Renewed continuation of an old famous project that recreated a macOS desktop, but now updated to the newest version with fixes, improvements and features!
 
 -Compatible with any system
