@@ -1324,3 +1324,63 @@ li > .menu__container > .grid__controling .control_center--grid {
 .widgets-panel__calendar li span:first-child {
   font-weight: bold;
 }
+/* 1. Ajustes del contenedor para el eje X y visibilidad */
+.dock .icon {
+  position: relative;
+  overflow: visible !important; /* Permite que la etiqueta salga del botón */
+  z-index: 1;
+}
+
+/* 2. Aseguramos que el icono con hover esté siempre por encima de sus vecinos */
+.dock .icon:hover {
+  z-index: 999;
+}
+
+/* 3. La etiqueta (Bocadillo gris claro) */
+.dock .icon .dock-label {
+  position: absolute;
+  bottom: 110%; /* Flota sobre el icono */
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  
+  /* Estilo visual exacto a tu imagen de referencia */
+  background-color: rgba(235, 235, 235, 0.75); /* Gris claro translúcido */
+  color: #1a1a1a; /* Texto oscuro para máxima legibilidad */
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  white-space: nowrap;
+  
+  /* Efecto de cristal y profundidad */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+
+  /* Estado inicial (oculto) */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* No estorba al hacer clic */
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* 4. El pico del bocadillo (triángulo inferior) */
+.dock .icon .dock-label::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* Justo debajo de la caja */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 7px;
+  border-style: solid;
+  /* El color debe coincidir con el fondo de la etiqueta */
+  border-color: rgba(235, 235, 235, 0.75) transparent transparent transparent;
+}
+
+/* 5. Activación del hover: aparece y sube ligeramente */
+.dock .icon:hover .dock-label {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-12px);
+}
