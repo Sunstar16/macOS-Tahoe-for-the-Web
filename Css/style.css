@@ -557,6 +557,13 @@ li > .menu__container > .grid__controling .control_center--grid {
   opacity: 1;
 }
 
+/* Forzamos que el indicador de Launchpad nunca se vea */
+#point-launchpad {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
 .dock .column {
   width: 1px;
   height: 45px;
