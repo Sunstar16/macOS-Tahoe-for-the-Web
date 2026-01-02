@@ -551,6 +551,12 @@ li > .menu__container > .grid__controling .control_center--grid {
   transition: 0.3s;
 }
 
+.dock .icon #point-finder {
+  display: block; /* Fuerza la visibilidad */
+  visibility: visible;
+  opacity: 1;
+}
+
 .dock .column {
   width: 1px;
   height: 45px;
