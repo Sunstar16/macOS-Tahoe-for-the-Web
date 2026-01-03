@@ -541,6 +541,8 @@ li > .menu__container > .grid__controling .control_center--grid {
 }
 
 .dock .point {
+  position: absolute;
+  margin-bottom: -60px;
   width: 5px;
   height: 5px;
   margin-top: -4px;
@@ -555,13 +557,6 @@ li > .menu__container > .grid__controling .control_center--grid {
   display: block; /* Fuerza la visibilidad */
   visibility: visible;
   opacity: 1;
-}
-
-/* Forzamos que el indicador de Launchpad nunca se vea */
-#point-launchpad {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
 }
 
 .dock .column {
