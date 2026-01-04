@@ -1446,3 +1446,27 @@ color: white;
   border-bottom-right-radius: 12px;
   display: block;
 }
+
+.music {
+  flex-grow: 1;
+  width: 900px;
+  height: 478px;
+  background-color: var(--app-color-white);
+  top: 10%;
+  left: 20%;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  display: none; 
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Music App Iframe - Consistencia total con Safari */
+.music iframe {
+  position: absolute;
+  flex-grow: 1;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: block;
+}
