@@ -9,6 +9,7 @@ Renewed continuation of an old famous project that recreated a macOS BigSur desk
 -Progressively Adding functional Apps 
 
 THIS PROYECT IS IN PROGRESS AND IS BEING MAINTAINED!
-Also, this peoject is fanmade and it is not affiliated in any way with apple inc.
+
+Also, this project is fanmade and it is not affiliated in any way with apple inc.
 
 HERE: https://sunstar16.github.io/macOS-26-Tahoe-for-the-Web/
