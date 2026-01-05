@@ -228,13 +228,25 @@ launchpad.opening.addEventListener("click", handleOpenLaunching);
 
 function handleOpenLaunching() {
   if (launchpad.window.style.display === "none") {
+    // APERTURA (Se queda como está)
     launchpad.window.style.display = "block";
     elements.navbar.style.display = "none";
     launchpad.point.style.display = "block";
   } else {
-    launchpad.window.style.display = "none";
-    elements.navbar.style.display = "flex";
-    launchpad.point.style.display = "none";
+    // CIERRE (Aquí aplicamos el reverse)
+    
+    // 1. Añadimos la clase de animación de salida
+    launchpad.window.classList.add("launchpad-closing");
+
+    // 2. Esperamos 300ms (duración de la animación) antes de ocultar
+    setTimeout(() => {
+      launchpad.window.style.display = "none";
+      elements.navbar.style.display = "flex";
+      launchpad.point.style.display = "none";
+      
+      // 3. Quitamos la clase para que esté limpia cuando vuelvas a abrir
+      launchpad.window.classList.remove("launchpad-closing");
+    }, 300);
   }
   launchpad.container.style.display = "none";
 }
