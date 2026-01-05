@@ -1486,3 +1486,21 @@ color: white;
   border-bottom-right-radius: 12px;
   display: block;
 }
+
+
+/* Animación de salida: de normal a grande y transparente */
+@keyframes close-opacity {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+/* Clase que usaremos en JS */
+.launchpad-closing {
+  animation: close-opacity 300ms forwards !important;
+}
