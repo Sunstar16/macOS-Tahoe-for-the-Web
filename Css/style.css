@@ -1254,8 +1254,9 @@ li > .menu__container > .grid__controling .control_center--grid {
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.281);
   overflow: hidden;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
   background: var(--color-white-400);
+  padding-top: 10px;
 }
 
 .context-menu ul {
