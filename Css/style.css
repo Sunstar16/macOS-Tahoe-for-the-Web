@@ -345,7 +345,6 @@ li > ul > li > button:hover {
 
 li > ul > li > button:active {
   background-color: #0063f7;
-  color: var(--color-white);
 }
 
 li > .menu__container {
@@ -1245,18 +1244,13 @@ li > .menu__container > .grid__controling .control_center--grid {
 
 .context-menu {
   padding: 0 3px;
-  position: relative;
-  border-radius: 18px;
+  position: absolute;
+  border-radius: 14px;
   text-align: center;
-  border: 1px solid var(--color-white-400);
+  border: 1px solid rgba(255, 255, 255, 0.281);
   overflow: hidden;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(5px);
   background: var(--color-white-400);
-  box-shadow: inset 0 0 50px 1px hsl(0, 0%, 100%, 0.5);
-  width: 245px;
-  height: 175px;
-  padding-bottom: 5px;
-  padding-top: 10px;
 }
 
 .context-menu ul {
@@ -1266,19 +1260,13 @@ li > .menu__container > .grid__controling .control_center--grid {
   list-style: none;
 }
 
-.context-menu ul li {
-width: 100%;
-border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-padding-bottom: 5px;
-margin-bottom: 5px !important;
-}
 
 .context-menu ul li:last-child {
   border: none;
 }
 
 .context-menu ul li button {
-
+  color: var(--color-white);
   width: 100%;
   height: 100%;
   text-align: left;
@@ -1292,11 +1280,20 @@ margin-bottom: 5px !important;
   display: flex;
   flex-direction: row;
   cursor: url(../cursor/Link.cur), pointer;
+  color: black;
 }
 .context-menu ul button:hover {
   background: var(--color-blue-800);
-  color: var(--color-white);
+  color: white;
   border-radius: 18px;
+}
+
+/* Aplicar el mismo estilo de separador a los elementos del menú contextual */
+.context-menu ul li {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 5px;
+  margin-bottom: 5px !important;
 }
 
 /* Widgets panel */
