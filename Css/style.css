@@ -1386,7 +1386,7 @@ li > .menu__container > .grid__controling .control_center--grid {
   background-color: rgba(235, 235, 235, 0.75); /* Gris claro translúcido */
   color: #1a1a1a; /* Texto oscuro para máxima legibilidad */
   padding: 6px 14px;
-  border-radius: 4px;
+  border-radius: 15px;
   font-size: 14px;
   font-weight: 500;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
