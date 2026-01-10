@@ -105,6 +105,11 @@ body {
   color: var(--color-black);
 }
 
+.navbar .leftLi a:hover {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
 .navbar .leftLi:hover {
   color: var(--color-white);
   border-radius: 10px;
