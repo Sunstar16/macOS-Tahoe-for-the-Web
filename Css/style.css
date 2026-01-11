@@ -1250,7 +1250,7 @@ li > .menu__container > .grid__controling .control_center--grid {
 .context-menu {
   padding: 0 3px;
   position: absolute;
-  border-radius: 14px;
+  border-radius: 18px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.281);
   overflow: hidden;
