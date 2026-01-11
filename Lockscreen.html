@@ -54,6 +54,7 @@
             color: #fff;
             font-size: 3em;
             font-weight: bold;
+            top: -250px;
         }
         .date {
             font-size: 0.5em;
@@ -72,12 +73,12 @@
             position: relative;
             left: 110px;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            top: -10px;
+            top: -30px;
         }
         .user-label {
             position: absolute;
-            top: 86%; /* Adjusted to move the label closer to the image */
-            left: 46%; /* Maintains slight left shift */
+            top: 60%; /* Adjusted to move the label closer to the image */
+            left: 52%; /* Maintains slight left shift */
             transform: translateX(-50%); /* Maintains proper alignment */
             color: white;
             font-size: 0.7em; /* Small text size */
@@ -90,12 +91,15 @@
             width: 60%; /* Reduced width to make input narrower */
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--color-white-400);
+            box-shadow: inset 0 0 50px 1px hsl(0, 0%, 100%, 0.5);
+            backdrop-filter: blur(6px);
             color: white;
             position: relative;
-            left: 46px;
+            left: 56px;
             box-sizing: border-box;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            top: -10px;
         }
         input#password::placeholder {
             color: rgba(255, 255, 255, 0.50);
@@ -173,7 +177,7 @@
         function checkPassword() {
             const password = document.getElementById('password').value;
             if (password === '1234') {
-                window.location.href = 'https://sunstar16.github.io/macOS-Tahoe-for-the-Web/';
+                window.location.href = 'https://sunstar16.github.io/macOS-26-Tahoe-for-the-Web/';
             } else {
                 alert('Incorrect password. Please try again.');
             }
@@ -189,10 +193,10 @@
         const video = document.querySelector('.background-video');
         const videoSrc = video.querySelector('source').getAttribute('src');
         if (videoSrc === '#' || !videoSrc) {
-            document.body.style.backgroundImage = "url('https://512pixels.net/wp-content/uploads/2025/06/26-Tahoe-Light-Thumb-1.png')";
+            document.body.style.backgroundImage = "url('https://static1.squarespace.com/static/5e949a92e17d55230cd1d44f/t/68979a76bf6f40659f68f188/1754765942723/TahoeDay.png')";
         } else {
             setTimeout(function() {
-                document.body.style.backgroundImage = "url('https://512pixels.net/wp-content/uploads/2025/06/26-Tahoe-Light-Thumb-1.png')";
+                document.body.style.backgroundImage = "url('https://static1.squarespace.com/static/5e949a92e17d55230cd1d44f/t/68979a76bf6f40659f68f188/1754765942723/TahoeDay.png')";
             }, 500);
         }
     </script>
