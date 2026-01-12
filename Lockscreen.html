@@ -18,9 +18,12 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             align-items: center;
             overflow: hidden;
+            /* Fondo estático de Tahoe */
+            background-image: url('https://static1.squarespace.com/static/5e949a92e17d55230cd1d44f/t/68979a76bf6f40659f68f188/1754765942723/TahoeDay.png');
+            background-size: cover;
+            background-position: center;
         }
         .top-bar {
             display: flex;
@@ -28,120 +31,74 @@
             width: 100%;
             padding: 10px;
             color: #fff;
-            position: relative;
-            left: -10px;
+            box-sizing: border-box;
         }
         .top-bar span {
-            font-size: 0.7em; /* Makes the span characters much smaller */
-            position: relative;
-            top: -8px;
-            left: -3px;
-        }
-        .clock {
-            font-family: 'SFProText-Semibold';
-            color: rgba(255, 255, 255, 0.70);
-            transform: scaleY(1.05);
-            
-            div#time& {
-                scale: 1.8;
-            }
+            font-size: 0.7em; 
+            margin-right: 20px;
         }
         .date-time {
-            left: 0px;
-            position: relative;
-            top: -23%;
             text-align: center;
             color: #fff;
             font-size: 3em;
             font-weight: bold;
-            top: -250px;
+            margin-top: 10vh; /* Esto lo mantiene siempre a la misma distancia arriba */
+        }
+        .clock {
+            font-family: 'SFProText-Semibold';
+            color: rgba(255, 255, 255, 0.70);
+            transform: scale(1.8); /* Tu escala original */
+            margin-top: 20px;
         }
         .date {
             font-size: 0.5em;
             opacity: 0.7;
-            position: relative;
-            top: -10px;
-            left: -3px;
+        }
+        .password-box {
+            margin-top: auto;
+            margin-bottom: 10vh; /* Esto lo mantiene siempre a la misma distancia abajo */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .user-info {
-            position: relative; /* Allows absolute positioning of the label relative to this container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .user-info img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            position: relative;
-            left: 110px;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            top: -30px;
+            margin-bottom: 10px;
         }
         .user-label {
-            position: absolute;
-            top: 60%; /* Adjusted to move the label closer to the image */
-            left: 52%; /* Maintains slight left shift */
-            transform: translateX(-50%); /* Maintains proper alignment */
             color: white;
-            font-size: 0.7em; /* Small text size */
-            text-align: center;
-            white-space: nowrap; /* Prevents text wrapping */
+            font-size: 0.7em; 
+            margin-bottom: 15px;
         }
         .password-box input {
-            margin: 10px 0;
             padding: 5px;
-            width: 60%; /* Reduced width to make input narrower */
+            /* Ancho fijo estricto de 150px */
+            width: 150px;
+            min-width: 150px;
+            max-width: 150px;
+            /* --------------------------- */
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            background: var(--color-white-400);
-            box-shadow: inset 0 0 50px 1px hsl(0, 0%, 100%, 0.5);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(6px);
             color: white;
-            position: relative;
-            left: 56px;
+            text-align: center;
             box-sizing: border-box;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            top: -10px;
         }
         input#password::placeholder {
             color: rgba(255, 255, 255, 0.50);
         }
-        .password-box input#password:focus {
-            outline: none;
-        }
-        .password-box input#password:focus-visible {
-            outline: none;
-        }
-        .password-box button {
-            margin: 10px 0;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            background: #007aff;
-            color: #fff;
-            cursor: pointer;
-            position: relative;
-            left: 70px;
-            visibility: hidden;
-        }
-        body {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        video.background-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0; /* Places video above background image but below other elements */
-        }
     </style>
 </head>
 <body>
-    <video class="background-video" autoplay muted loop>
-        <source src="#" type="video/mp4">
-    </video>
     <div class="top-bar">
         <span>U.S. ⌨ 🔋</span>
     </div>
@@ -153,52 +110,23 @@
         <div class="user-info">
             <img src="https://avatars.githubusercontent.com/u/68480330?v=4" alt="User">
             <span class="user-label">Sunstar_16</span>
-            <div>
-                <div></div>
-                <div style="font-size: 0.8em; opacity: 0.7;"></div>
-            </div>
         </div>
         <input type="password" id="password" placeholder="Password = 1234            ➜">
-        <button onclick="checkPassword()">Enter Password</button>
     </div>
+
     <script>
         function updateTime() {
             const now = new Date();
             const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const day = days[now.getDay()];
-            const month = months[now.getMonth()];
-            const date = now.getDate();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            document.querySelector('.date').textContent = `${day}, ${month} ${date}`;
-            document.getElementById('time').textContent = `${hours}:${minutes}`;
+            document.querySelector('.date').textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+            document.getElementById('time').textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
         }
         function checkPassword() {
-            const password = document.getElementById('password').value;
-            if (password === '1234') {
+            if (document.getElementById('password').value === '1234') {
                 window.location.href = 'https://sunstar16.github.io/macOS-26-Tahoe-for-the-Web/';
             } else {
-                alert('Incorrect password. Please try again.');
+                alert('Incorrect password.');
             }
         }
-        setInterval(updateTime, 60000);
-        updateTime();
-        document.getElementById('password').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                checkPassword();
-            }
-        });
-        // Load background image with delay only if video URL is valid
-        const video = document.querySelector('.background-video');
-        const videoSrc = video.querySelector('source').getAttribute('src');
-        if (videoSrc === '#' || !videoSrc) {
-            document.body.style.backgroundImage = "url('https://static1.squarespace.com/static/5e949a92e17d55230cd1d44f/t/68979a76bf6f40659f68f188/1754765942723/TahoeDay.png')";
-        } else {
-            setTimeout(function() {
-                document.body.style.backgroundImage = "url('https://static1.squarespace.com/static/5e949a92e17d55230cd1d44f/t/68979a76bf6f40659f68f188/1754765942723/TahoeDay.png')";
-            }, 500);
-        }
-    </script>
-</body>
-</html>
+        setInterval
