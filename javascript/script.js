@@ -129,17 +129,68 @@ function change_brightness() {
 }
 */
 
-/********** Shake to Find Cursor (macOS Tahoe style) **********/
+/**************************************************************
+ * macOS Tahoe - Logic + Shake to Find (Fixed for Dragging)
+ **************************************************************/
+
+let isDragging = false; // Variable global para controlar el estado
+
+document.addEventListener('DOMContentLoaded', () => {
+    const aboutBtn = document.getElementById('about-link');
+    const aboutWin = document.getElementById('about-window');
+    const draggable = document.getElementById('draggable-window');
+
+    if (aboutBtn && aboutWin && draggable) {
+        
+        // Abrir ventana
+        aboutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            aboutWin.style.display = 'block';
+            draggable.style.top = "50%";
+            draggable.style.left = "50%";
+            draggable.style.transform = "translate(-50%, -50%)";
+        });
+
+        let offsetX, offsetY;
+
+        // Lógica de arrastre
+        draggable.addEventListener('mousedown', (e) => {
+            if (e.target.closest('button')) return;
+
+            isDragging = true; // <--- BLOQUEAMOS EL CURSOR GRANDE AQUÍ
+            const rect = draggable.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+            
+            draggable.style.transform = 'none';
+            draggable.style.left = rect.left + 'px';
+            draggable.style.top = rect.top + 'px';
+            draggable.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            draggable.style.left = (e.clientX - offsetX) + 'px';
+            draggable.style.top = (e.clientY - offsetY) + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false; // <--- LIBERAMOS EL CURSOR AL SOLTAR
+            draggable.style.cursor = 'grab';
+        });
+    }
+});
+
+/********** Shake to Find Cursor (Corregido) **********/
 let lastMouseX = 0;
 let lastMouseY = 0;
 let lastMouseTime = Date.now();
 let cursorTimeout;
-let firstMove = true; // Nueva variable para evitar el error de carga
+let firstMove = true;
 
 document.addEventListener('mousemove', (e) => {
   const currentTime = Date.now();
 
-  // Si es el primer movimiento, solo guardamos la posición y salimos
   if (firstMove) {
     lastMouseX = e.pageX;
     lastMouseY = e.pageY;
@@ -154,7 +205,8 @@ document.addEventListener('mousemove', (e) => {
     const distance = Math.sqrt(Math.pow(e.pageX - lastMouseX, 2) + Math.pow(e.pageY - lastMouseY, 2));
     const speed = (distance / timeDiff) * 100; 
 
-    if (speed > 1500) {
+    // MODIFICACIÓN: Solo se hace grande si NO estamos arrastrando la ventana
+    if (speed > 1500 && !isDragging) { 
       document.body.classList.add('cursor-big');
     }
 
@@ -169,6 +221,89 @@ document.addEventListener('mousemove', (e) => {
   lastMouseTime = currentTime;
 });
 
+function closeAbout() {
+    const win = document.getElementById('about-window');
+    if (win) win.style.display = 'none';
+}
+
+/**************************************************************
+ * macOS Tahoe - About This Mac Logic (Full Window Drag)
+ **************************************************************/
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Elementos
+    const aboutBtn = document.getElementById('about-link');
+    const aboutWin = document.getElementById('about-window');
+    const draggable = document.getElementById('draggable-window');
+
+    // 2. Apertura de la ventana
+    if (aboutBtn && aboutWin && draggable) {
+        aboutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            aboutWin.style.display = 'block';
+            
+            // Centrado inicial
+            draggable.style.top = "50%";
+            draggable.style.left = "50%";
+            draggable.style.transform = "translate(-50%, -50%)";
+        });
+
+        // 3. Lógica de Arrastre (Toda la caja)
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        // Ahora escuchamos en 'draggable' (toda la caja) en lugar de 'header'
+        draggable.addEventListener('mousedown', (e) => {
+            // SEGURIDAD: Si haces clic en el botón de cerrar o en el de info, no arrastres
+            if (e.target.closest('button')) return;
+
+            isDragging = true;
+            
+            const rect = draggable.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+            
+            draggable.style.transform = 'none';
+            draggable.style.left = rect.left + 'px';
+            draggable.style.top = rect.top + 'px';
+            
+            draggable.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            let x = e.clientX - offsetX;
+            let y = e.clientY - offsetY;
+
+            draggable.style.left = x + 'px';
+            draggable.style.top = y + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            draggable.style.cursor = 'default';
+        });
+    }
+});
+
+// 4. Función de cierre (global)
+function closeAbout() {
+    const win = document.getElementById('about-window');
+    if (win) win.style.display = 'none';
+}
+/**
+ * 4. Función de cierre global
+ * Se llama desde el atributo onclick="closeAbout()" del HTML
+ */
+function closeAbout() {
+    const win = document.getElementById('about-window');
+    if (win) {
+        win.style.display = 'none';
+    }
+}
 // Spotlight
 function handleopen_spotlight() {
   if (elements.spotlight_search.style.display === "none") {
