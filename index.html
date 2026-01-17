@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- ios support -->
@@ -70,7 +71,7 @@
           <img src="./icon/apple_logo_menu_bar-2.png" alt="Apple logo" />
           <ul>
             <li>
-              <button><a href="https://github.com/Sunstar16/macOS-Tahoe-for-the-Web/" target="_blank">About This Mac</a></button>
+              <button id="about-link">About This Mac</button>
             </li>
             <li>
               <button>System Preferences...</button>
@@ -906,5 +907,47 @@
     <script src="./javascript/script.js"></script>
     <script src="./javascript/app.js"></script>
     
+<div id="about-window" class="window-overlay">
+  <div class="about-content" id="draggable-window">
+    <div class="window-header" id="about-header">
+       <button class="close-btn" onclick="closeAbout()"></button>
+       <div class="dot-grey"></div>
+       <div class="dot-grey"></div>
+    </div>
+
+    <div class="about-body">
+        <img src="icon/about/MacBookProM5.png" class="mac-icon">
+        <h1 class="mac-title">MacBook Pro</h1>
+        <p class="mac-subtitle">14 inch, M5</p>
+
+        <div class="specs-container">
+            <div class="spec-row">
+                <span class="spec-label">Chip</span>
+                <span class="spec-value">Apple M5</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Memory</span>
+                <span class="spec-value">24 GB</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Serial number</span>
+                <span class="spec-value">C02FX1ABC2D3</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">macOS</span>
+                <span class="spec-value">Tahoe 26.0</span>
+            </div>
+        </div>
+
+        <button class="more-info-btn">More Info...</button>
+        
+        <div class="footer-legal">
+            <p>Regulatory Certification</p>
+            <p>™ and © 1983-2026 Apple Inc.</p>
+            <p>All Rights Reserved.</p>
+        </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>
