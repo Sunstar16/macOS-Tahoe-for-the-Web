@@ -49,6 +49,12 @@ body {
   cursor: url('../cursor/normal-select.png'), auto;
 }
 
+/* Nueva clase para el efecto de cursor grande de macOS Tahoe */
+.cursor-big {
+  cursor: url('../cursor/normal-select-big.png'), auto !important;
+}
+
+
 #loading {
   width: 100%;
   height: 100vh;
