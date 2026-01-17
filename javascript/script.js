@@ -134,28 +134,34 @@ let lastMouseX = 0;
 let lastMouseY = 0;
 let lastMouseTime = Date.now();
 let cursorTimeout;
+let firstMove = true; // Nueva variable para evitar el error de carga
 
 document.addEventListener('mousemove', (e) => {
   const currentTime = Date.now();
+
+  // Si es el primer movimiento, solo guardamos la posición y salimos
+  if (firstMove) {
+    lastMouseX = e.pageX;
+    lastMouseY = e.pageY;
+    lastMouseTime = currentTime;
+    firstMove = false;
+    return;
+  }
+
   const timeDiff = currentTime - lastMouseTime;
 
   if (timeDiff > 0) {
     const distance = Math.sqrt(Math.pow(e.pageX - lastMouseX, 2) + Math.pow(e.pageY - lastMouseY, 2));
-    // Calculamos la velocidad
     const speed = (distance / timeDiff) * 100; 
 
-    // Umbral de activación (900 está bien, puedes bajarlo a 700 si quieres que sea más sensible)
     if (speed > 1500) {
       document.body.classList.add('cursor-big');
     }
 
-    // Esta es la clave: siempre que haya movimiento, refrescamos el temporizador.
-    // Solo si el usuario deja de mover el ratón (o baja mucho la velocidad) 
-    // durante 500ms, el cursor volverá a su tamaño normal.
     clearTimeout(cursorTimeout);
     cursorTimeout = setTimeout(() => {
       document.body.classList.remove('cursor-big');
-    }, 500); // 500ms es más cercano al comportamiento real de macOS
+    }, 500);
   }
 
   lastMouseX = e.pageX;
